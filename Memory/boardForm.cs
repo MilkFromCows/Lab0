@@ -68,7 +68,25 @@ namespace Memory
         // TODO:  students should write this one
         private bool IsMatch(int index1, int index2)
         {
-            return true;
+            /* get the value of the image in first card
+             * get the value of the image in second card
+             * 
+             * if first value = second value
+             *      return true
+             * END if
+             * 
+             * return false
+             */
+
+            string value1 = GetCardValue(index1);
+            string value2 = GetCardValue(index2);
+
+            if(value1 == value2)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         // This method fills each picture box with a filename
