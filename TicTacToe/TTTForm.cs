@@ -233,6 +233,7 @@ namespace TicTacToe
         }
 
         //* TODO:  finish these 2
+        // Jeff's comment: yep
         private void HighlightRow(int row)
         {
             for(int col = 0; col < SIZE; col++)
@@ -254,6 +255,7 @@ namespace TicTacToe
         }
 
         //* TODO:  finish this
+        // Jeff's comment: should work 
         private void HighlightWinner(string player, int winningDimension, int winningValue)
         {
             switch (winningDimension)
@@ -303,6 +305,23 @@ namespace TicTacToe
 
         private void MakeComputerMove()
         {
+            /*  Computer picks a random row and column, until 
+             *  it finds a blank square. That square gets the 
+             *  computer's symbol. 
+             */
+
+            Label square;
+            Random generator = new Random();
+
+            do
+            {
+                int row = generator.Next(0, SIZE);
+                int col = generator.Next(0, SIZE);
+                square = GetSquare(row, col);
+            } while (square.Text != EMPTY);
+
+            square.Text = COMPUTER_SYMBOL;
+            DisableSquare(square);
         }
 
         // Setting the enabled property changes the look and feel of the cell.
