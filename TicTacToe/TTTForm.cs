@@ -234,8 +234,31 @@ namespace TicTacToe
         }
 
         //* TODO:  finish these 2
+        // Jeff's comment: I'm going to try using my code from the 
+        // CS133N class initially. It looks like it should still work.
+        // The method should set all of the squares to empty and set the 
+        // font color to black.
         private void ResetSquares()
         {
+            /* Clear all the X's
+             * Change the color
+             * Reset the text
+             */
+             for(int row = 0; row < SIZE; row++)
+            {
+                // ... 
+                for(int col = 0; col < SIZE; col++)
+                {
+                    Label square = GetSquare(row, col);
+                    square.ForeColor = Color.Black;
+                    square.Text = EMPTY;
+                }
+            }
+
+            DisableAllSquares();
+            EnableAllSquares();
+            resultLabel.Text = EMPTY;
+
         }
 
         private void MakeComputerMove()
