@@ -127,6 +127,24 @@ namespace TicTacToe
 
         private bool IsFull()
         {
+            /* Nested for loops to check all squares
+             *  if there's an empty square
+             *      return false
+             *  END if
+             * End for loops
+             * return true
+             */
+             for(int row = 0; row < SIZE; row++)
+            {
+                for(int col = 0; col < SIZE; col++)
+                {
+                    Label square = GetSquare(row, col);
+                    if(square.Text == EMPTY)
+                    {
+                        return false;
+                    }
+                }
+            }
             return true;
         }
 
@@ -221,6 +239,12 @@ namespace TicTacToe
 
         private void HighlightDiagonal1()
         {
+            for (int row = 0, col = 0; row < SIZE; row++, col++)
+            {
+                Label square = GetSquare(row, col);
+                square.Enabled = true;
+                square.ForeColor = Color.Red;
+            }
         }
 
         //* TODO:  finish this
