@@ -130,7 +130,11 @@ namespace Memory
         // shows (loads) the backs of all of the cards
         private void LoadAllCardBacks()
         {
+           for (int i = 1; i <= 20; i++)
+            {
+                LoadCardBack(i);
 
+            }
         }
 
         // Hides a picture box
@@ -194,6 +198,9 @@ namespace Memory
              *      to make sure that the cards are loaded successfully and that
              *      they're shuffled.  If you get all 2s, something is wrong.
             */
+            FillCardFilenames();
+            ShuffleCards();
+            LoadAllCardBacks();
         }
 
         private void card_Click(object sender, EventArgs e)
