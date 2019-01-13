@@ -22,7 +22,7 @@ namespace Memory
 
         int firstCardNumber = NOT_PICKED_YET;
         int secondCardNumber = NOT_PICKED_YET;
-        int matches = 0;
+        int matches = 0; // Game is over if there are 10 matches
         #endregion
 
         #region Methods
@@ -145,7 +145,7 @@ namespace Memory
             card.Image = null;
         }
 
-        // Jeff's comment: It calls HideCard in a for loop. It works. 
+        // Jeff's comment: It calls HideCard() in a for loop. It works. 
         private void HideAllCards()
         {
             for (int i = 1; i <= 20; i++)
@@ -156,14 +156,19 @@ namespace Memory
         }
 
         // shows a picture box
+        // Jeff's comment: but what is the purpose of this function? 
+        // We already have LoadCard()... 
         private void ShowCard(int i)
         {
-
+            LoadCard(i);
         }
 
         private void ShowAllCards()
         {
-
+            for (int i = 1; i <= 20; i++)
+            {
+                ShowCard(i);
+            }
         }
 
         // disables a picture box
@@ -219,6 +224,7 @@ namespace Memory
             */
         }
 
+        // Jeff's comment: This might be done. 
         private void card_Click(object sender, EventArgs e)
         {
             PictureBox card = (PictureBox)sender;
@@ -237,18 +243,25 @@ namespace Memory
              *  end if
             */
 
-            // this if/else is just for testing purposes. It's going to go away. 
-            if(card.Image == null)
+            // In progress...done?
+            if(firstCardNumber == NOT_PICKED_YET)
             {
-                LoadCard(cardNumber); 
+                firstCardNumber = cardNumber;
+                LoadCard(cardNumber);
+                DisableCard(cardNumber);
+                
             }
             else
             {
-                HideCard(cardNumber);
-               
+                secondCardNumber = cardNumber;
+                LoadCard(cardNumber);
+                DisableAllCards();
+                flipTimer.Start();
             }
+            
         }
 
+        // Jeff's comment: This might be done. 
         private void flipTimer_Tick(object sender, EventArgs e)
         {
             /*
@@ -272,6 +285,35 @@ namespace Memory
              *      enable all of the cards left on the board
              * end if
              */
+            flipTimer.Stop();
+           if(IsMatch(firstCardNumber, secondCardNumber))
+            {
+                // ...
+                matches++;
+                HideCard(firstCardNumber);
+                HideCard(secondCardNumber);
+                firstCardNumber = NOT_PICKED_YET;
+                secondCardNumber = NOT_PICKED_YET;
+                if(matches == 10)
+                {
+                    // ...
+                    MessageBox.Show("Ten matches");
+                }
+                else
+                {
+                    // ...
+                    EnableAllCards();
+                }
+            }
+           else
+            {
+                // ...
+                LoadCardBack(firstCardNumber);
+                LoadCardBack(secondCardNumber);
+                firstCardNumber = NOT_PICKED_YET;
+                secondCardNumber = NOT_PICKED_YET;
+                EnableAllCards();
+            }
         }
         #endregion
     }
