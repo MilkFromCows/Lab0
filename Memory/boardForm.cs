@@ -174,27 +174,44 @@ namespace Memory
         // disables a picture box
         private void DisableCard(int i)
         {
-
+            PictureBox card = GetCard(i);
+            card.Enabled = false;
         }
 
         private void DisableAllCards()
         {
-
+            for (int i = 1; i <= 20; i++)
+            {
+                DisableCard(i);
+            }
         }
 
         private void EnableCard(int i)
         {
-
+            PictureBox card = GetCard(i);
+            card.Enabled = true;
         }
 
         private void EnableAllCards()
         {
-
+            for (int i = 1; i <= 20; i++)
+            {
+                EnableCard(i);
+            }
         }
     
         private void EnableAllVisibleCards()
         {
-
+            PictureBox card;
+            for (int i = 1; i <= 20; i++)
+            {
+                card = GetCard(i);
+                if(!(card.Image == null))
+                {
+                    EnableCard(i);
+                }
+                
+            }
         }
 
         #endregion
@@ -302,7 +319,7 @@ namespace Memory
                 else
                 {
                     // ...
-                    EnableAllCards();
+                    EnableAllVisibleCards();
                 }
             }
            else
@@ -312,7 +329,7 @@ namespace Memory
                 LoadCardBack(secondCardNumber);
                 firstCardNumber = NOT_PICKED_YET;
                 secondCardNumber = NOT_PICKED_YET;
-                EnableAllCards();
+                EnableAllVisibleCards();
             }
         }
         #endregion
