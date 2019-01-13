@@ -138,9 +138,11 @@ namespace Memory
         }
 
         // Hides a picture box
+        // Jeff's comment: I did it! I can hide a card!
         private void HideCard(int i)
         {
-
+            PictureBox card = GetCard(i);
+            card.Image = null;
         }
 
         private void HideAllCards()
@@ -201,6 +203,15 @@ namespace Memory
             FillCardFilenames();
             ShuffleCards();
             LoadAllCardBacks();
+
+            /* To test LoadCard(). It works, but maybe I'll test it again later after/while 
+             * figuring out how to write ShuffleCards().
+            for (int i = 1; i <= 20; i++)
+            {
+                LoadCard(i);
+
+            }
+            */
         }
 
         private void card_Click(object sender, EventArgs e)
@@ -220,6 +231,16 @@ namespace Memory
              *      start the flip timer
              *  end if
             */
+
+            // this if/else is just for testing purposes. It's going to go away. 
+            if(card.Image == null)
+            {
+                LoadCard(cardNumber); 
+            }
+            else
+            {
+                HideCard(cardNumber);
+            }
         }
 
         private void flipTimer_Tick(object sender, EventArgs e)
