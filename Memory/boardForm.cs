@@ -145,8 +145,13 @@ namespace Memory
             card.Image = null;
         }
 
+        // Jeff's comment: It calls HideCard in a for loop. It works. 
         private void HideAllCards()
         {
+            for (int i = 1; i <= 20; i++)
+            {
+                HideCard(i);
+            }
 
         }
 
@@ -240,6 +245,7 @@ namespace Memory
             else
             {
                 HideCard(cardNumber);
+               
             }
         }
 
