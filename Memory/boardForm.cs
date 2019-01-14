@@ -156,18 +156,20 @@ namespace Memory
         }
 
         // shows a picture box
-        // Jeff's comment: but what is the purpose of this function? 
-        // We already have LoadCard()... 
+        // Jeff's comment: Sets the card's Visible property to true 
         private void ShowCard(int i)
         {
-            LoadCard(i);
+            PictureBox card = GetCard(i);
+            card.Visible = true;
         }
 
+        // Jeff's comment: Set's all cards Visible property to true.
         private void ShowAllCards()
         {
             for (int i = 1; i <= 20; i++)
             {
-                ShowCard(i);
+                PictureBox card = GetCard(i);
+                card.Visible = true;
             }
         }
 
