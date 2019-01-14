@@ -109,6 +109,19 @@ namespace Memory
         // TODO:  students should write this one
         private void ShuffleCards()
         {
+            Random generator = new Random();
+            for(int i = 1; i <=20; i++)
+            {
+                int rand = generator.Next(1, 21);
+                
+                string card1 = GetCardFilename(i);
+
+                SetCardFilename(i, GetCardFilename(rand));
+                SetCardFilename(rand, card1);
+
+            }
+
+            
         }
 
         // This method loads (shows) an image in a picture box.  Assumes that filenames
