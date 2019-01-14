@@ -142,7 +142,7 @@ namespace Memory
         private void HideCard(int i)
         {
             PictureBox card = GetCard(i);
-            card.Image = null;
+            card.Visible = false;
         }
 
         // Jeff's comment: It calls HideCard() in a for loop. It works. 
@@ -208,7 +208,7 @@ namespace Memory
             for (int i = 1; i <= 20; i++)
             {
                 card = GetCard(i);
-                if(!(card.Image == null))
+                if(card.Visible == true)
                 {
                     EnableCard(i);
                 }
